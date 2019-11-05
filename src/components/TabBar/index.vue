@@ -6,12 +6,12 @@
         <p>电影</p>
       </router-link>
 
-      <router-link tag="li" to="/cinema" >
+      <router-link tag="li" to="/cinema" :class="[$route.path === '/cinema' ? 'active' : '']">
         <i class="iconfont icon-dianyingyuan"></i>
         <p>电影院</p>
       </router-link>
 
-      <router-link tag="li" to="/mine" >
+      <router-link tag="li" to="/mine" :class="[$route.path === '/mine' ? 'active' : '']">
         <i class="iconfont icon-wode"></i>
         <p>我的</p>
       </router-link>
@@ -23,13 +23,18 @@
 export default {
   data(){
     return{
-
+     
     }
   },
   methods: {
    
   },
-}
+  computed:{
+    
+      
+    },
+  }
+
 </script>
 
 <style scoped>
