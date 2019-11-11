@@ -3,36 +3,25 @@
         <div class="search_input">
             <div class="search_input_wrapper">
                 <i class="iconfont icon-sousuo"></i>
-                    <input type="text">
+                    <input type="text" v-model="message">
             </div>
         </div>
         <div class="search_result">
             <h3>电影/综艺/电视剧</h3>
             <ul>
-                <li>
-                    <div class="img"><img src="" alt=""></div>
+                <li v-for="item in movieList" :key="item.id">
+                    <div class="img"><img :src="item.img | setWH('128.180')" alt=""></div>
                     <div class="info">
                         <p>
-                            <span>无名之辈</span>
-                            <span>8.5分</span>
+                            <span>{{item.nm}}</span>
+                            <span>{{item.sc}}分</span>
                         </p>
-                        <p> A Cool Fish</p>
-                        <p>剧情，喜剧，犯罪</p>
-                        <p>2018-11-16</p>
+                        <p>{{item.enm}}</p>
+                        <p>{{item.cat}}</p>
+                        <p>{{item.rt}}</p>
                     </div>
                 </li>
-                <li>
-                    <div class="img"><img src="" alt=""></div>
-                    <div class="info">
-                        <p>
-                            <span>无名之辈</span>
-                            <span>8.5分</span>
-                        </p>
-                        <p> A Cool Fish</p>
-                        <p>剧情，喜剧，犯罪</p>
-                        <p>2018-11-16</p>
-                    </div>
-                </li>
+               
             </ul>
         </div>
         
@@ -40,7 +29,50 @@
 </template>   
 <script>
 export default {
-    name:'Search'
+    data(){
+        return{
+            message:'',
+            movieList:[],
+        }
+    },
+    methods: {
+        cancelRequest(){
+            if(typeof this.source === 'function'){
+                this.source('终止请求')
+
+            }
+        }
+    },
+    watch: {
+        message(newVal){
+            var that = this
+            // clearTimeout()
+            // setTimeout()
+            this.cancelRequest()
+             this.axios.get('/api/searchList?cityId=10&kw='+newVal,{
+                 cancelToken:new this.axios.CancelToken(function(c){
+                     console.log(111)
+                     that.source = c;
+                 })
+             }).then(res=>{
+            // console.log(res)
+            var msg = res.data.msg;
+            var movies = res.data.data.movies
+            if( msg && movies){
+                this.movieList = res.data.data.movies.list;
+                // console.log(this.movieList)
+            }
+        }).catch((err)=>{
+            if(this.axios.isCancel(err)){
+                console.log('Request canceled',err.message)
+            }else{
+                console.log(err)
+            }
+        })
+        }
+    },
+    name:'Search',
+ 
 }
 </script>
 

@@ -1,49 +1,40 @@
 <template>
       <div class="movie_body">
         <ul>
-            <li>
-                <div class="pic_show"><img src="#" alt=""></div>
+            <li v-for="item in comingList" :key="item.id">
+                <div class="pic_show"><img :src="item.img | setWH('128.180')" alt=""></div>
                 <div class="info_list">
-                    <h2>你好Vue</h2>
-                    <p>观众评<span class="grade">9.2</span></p>
-                    <p>主演：陈建斌，任素汐，樊斌龙</p>
-                    <p>今天55家影院放映607场</p>
+                    <h2>{{item.nm}}</h2>
+                    <p>观众评<span class="grade">{{item.sc}}</span></p>
+                    <p>主演：{{item.star}}</p>
+                    <p>{{item.rt}}上映</p>
                 </div>
                 <div class="btn_pre">
                     预售
                 </div>
             </li>
-            <li>
-                <div class="pic_show"><img src="#" alt=""></div>
-                <div class="info_list">
-                    <h2>你好Vue</h2>
-                    <p>观众评<span class="grade">9.2</span></p>
-                    <p>主演：陈建斌，任素汐，樊斌龙</p>
-                    <p>今天55家影院放映607场</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="#" alt=""></div>
-                <div class="info_list">
-                    <h2>你好Vue</h2>
-                    <p>观众评<span class="grade">9.2</span></p>
-                    <p>主演：陈建斌，任素汐，樊斌龙</p>
-                    <p>今天55家影院放映607场</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
+            
         </ul>
         
     </div>
 </template>   
 <script>
 export default {
-    name:'ComingSoon'
+    data(){
+        return {
+            comingList:[],
+        }
+    },
+    name:'ComingSoon',
+    mounted() {
+        this.axios.get('/api/movieComingList?cityId=10').then(res=>{
+            if(res.data.msg === 'ok'){
+                // console.log(res)
+                this.comingList = res.data.data.comingList;
+
+            }
+        })
+    },
 }
 </script>
 
