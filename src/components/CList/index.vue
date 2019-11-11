@@ -15,62 +15,7 @@
                     <div>打卡</div>
                 </div>
             </li>
-            <li>
-                <div>
-                    <span>大地影院（奥东世纪店）</span>
-                    <span class="q"><span class="price">22.9</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济开发区奥东世纪3层</span>
-                    <span>1765.3km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>打卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院（奥东世纪店）</span>
-                    <span class="q"><span class="price">22.9</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济开发区奥东世纪3层</span>
-                    <span>1765.3km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>打卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院（奥东世纪店）</span>
-                    <span class="q"><span class="price">22.9</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济开发区奥东世纪3层</span>
-                    <span>1765.3km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>打卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院（奥东世纪店）</span>
-                    <span class="q"><span class="price">22.9</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济开发区奥东世纪3层</span>
-                    <span>1765.3km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>打卡</div>
-                </div>
-            </li>
+           
         </ul>
        
     </div>
