@@ -4,7 +4,7 @@
     <div id="content">
       <div class="movie_menu">
         <router-link tag="div" to="/movie/city" class="city_name">
-          <span>大连</span>
+          <span>{{this.$store.state.city.nm}}</span>
           <i class="iconfont icon-triangle-down"></i>
         </router-link>
         <div class="hot_switch">
@@ -28,23 +28,60 @@
 import Header from "@/components/Header";
 import TabBar from "@/components/TabBar";
 import { log } from "util";
+import {messageBox} from "@/components/JS/index.js"
 
 export default {
   data() {
     return {
-      index: 0
+      index: 0,
+      nm:''
     };
   },
   name: "Movie",
   components: {
     Header,
-    TabBar
+    TabBar,
   },
   methods: {
     isShow(index) {
       this.index = index;
     }
-  }
+  },
+  mounted() {
+    setTimeout(()=>{
+        this.axios.get('/api/getLocation').then((res)=>{
+      var msg = res.data.msg;
+      console.log(res);
+     
+      if(msg === 'ok'){
+         var nm = res.data.data.nm
+         var id = res.data.data.id
+        //  console.log(this.$store.state.city.id,id); //一个是字符串一个是数字类型
+         if(this.$store.state.city.id == id){
+           return
+         }
+        messageBox({
+          title:'定位',
+          content:nm,
+          cancle:'取消',
+          ok : '切换定位',
+          handleOk(){
+            window.localStorage.setItem('nowNm',nm)
+            window.localStorage.setItem('nowId',id)
+            window.location.reload()
+
+
+          }
+        });
+
+      }
+    })
+    },3000)
+  
+    
+  }, 
+
+  
 };
 </script>
 
@@ -52,7 +89,7 @@ export default {
 #content {
   flex: 1;
   overflow: auto;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   position: relative;
   display: flex;
   flex-direction: column;
