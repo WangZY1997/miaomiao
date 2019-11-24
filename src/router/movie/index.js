@@ -17,11 +17,32 @@ export default {
         {
             path:'search',
             component : () => import('@/components/Search')
-        },  
+        }, 
+        {
+            path:'detail/1/:movieid',
+            components :{
+                default: ()=>import('@/components/NowPlaying'),
+                detail : ()=> import('@/views/Movie/detail')
+            },
+            props:{
+                detail:true
+            }
+        },   
+        {
+            path:'detail/2/:movieid',
+            components :{
+                default: ()=>import('@/components/ComingSoon'),
+                detail : ()=> import('@/views/Movie/detail')
+            },
+            props:{
+                detail:true
+            }
+        },   
         {
             path:'/movie',
             redirect:'/movie/nowplaying'
         }
+
          
     ],
 
